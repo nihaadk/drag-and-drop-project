@@ -59,11 +59,11 @@ button:active {
 
 .projects {
     margin: 1rem;
-    border: 1px solid #039be5;
+    border: 1px solid #02d102;
 }
 
 .projects header {
-    background: #039be5;
+    background: #02d102;
     height: 3.5rem;
     display: flex;
     justify-content: center;
@@ -96,7 +96,7 @@ button:active {
 }
 
 .projects li h2 {
-    color: #039be5;
+    color: #02d102;
     margin: 0.5rem 0;
 }
 
