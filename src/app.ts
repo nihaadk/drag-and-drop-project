@@ -75,14 +75,23 @@ class Project {
   ) {}
 }
 
-type Listner = (items: Project[]) => void;
+type Listner<T> = (items: T[]) => void;
 
-class ProjectState {
-  private listners: Listner[] = [];
+class State<T> {
+  protected listners: Listner<T>[] = [];
+
+  addListners(listnerFn: Listner<T>) {
+    this.listners.push(listnerFn);
+  }
+}
+
+class ProjectState extends State<Project> {
   private projects: Project[] = [];
   private static instance: ProjectState;
 
-  private constructor() {}
+  private constructor() {
+	  super();
+  }
 
   static getInstance() {
     if (this.instance) {
@@ -90,10 +99,6 @@ class ProjectState {
     }
     this.instance = new ProjectState();
     return this.instance;
-  }
-
-  addListners(listnerFn: Listner) {
-    this.listners.push(listnerFn);
   }
 
   addProject(title: string, description: string, people: number) {
@@ -157,7 +162,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: any[];
 
   constructor(private type: "active" | "finished") {
-    super("project-list", "app", false, `${type}-projects`);
+    super("project-list", "app", true, `${type}-projects`);
     this.assignedProjects = [];
     this.configure();
     this.renderContent();
@@ -203,7 +208,7 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
   peopleInputElement: HTMLInputElement;
 
   constructor() {
-    super("project-input", "app", true, "user-input");
+    super("project-input", "app", false, "user-input");
 
     this.titleInputElement = this.element.querySelector(
       "#title"
