@@ -45,10 +45,25 @@ function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
 	};
 	return adjDescriptor;
 }
+// Project type
+enum ProjectStatus {
+	Active,
+	Finished
+}
+
+class Project {
+	constructor(
+		public id: string,
+		public title: string,
+		public description: string,
+		public people: number,
+		public status: ProjectStatus
+	) {}
+}
 
 class ProjectState {
 	private listners: any[] = [];
-	private projects: any[] = [];
+	private projects: Project[] = [];
 	private static instance: ProjectState;
 
 	private constructor() {}
@@ -66,13 +81,8 @@ class ProjectState {
 	}
 
 	addProject(title: string, description: string, people: number) {
-		const project = {
-			id: Math.random.toString(),
-			title,
-			description,
-			people
-		};
-		this.projects.push(project);
+		const newProject = new Project(Math.random.toString(), title, description, people, ProjectStatus.Active);
+		this.projects.push(newProject);
 		for (const listnerFn of this.listners) {
 			listnerFn(this.projects.slice());
 		}
