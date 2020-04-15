@@ -27,7 +27,7 @@ textarea {
     padding: 0.2rem 0.4rem;
     width: 100%;
     max-width: 30rem;
-    border: 1px solid #e1f5fe;
+    border: 1px solid #0288d1;
     padding: 10px;
     font-size: 13pt;
 }
@@ -125,6 +125,6 @@ button:active {
 #user-input {
     margin: 1rem;
     padding: 1rem;
-    box-shadow: 3px 3px 19px 0px rgba(168, 168, 168, 1);
+    border: 1px solid #0288d1;
     background: #f7f7f7;
 }
