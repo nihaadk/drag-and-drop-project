@@ -1,4 +1,4 @@
-import { Project } from "../model/project.js";
+import { Project } from "../model/project";
 
 export enum ProjectStatus {
 	Active,
